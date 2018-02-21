@@ -6,6 +6,7 @@ Throughout this Unit there will be a great emphasis on JavaScript, where you wil
 
 ## Prerequisits
 - [StandardJS](https://standardjs.com/) is a style guide and library for JavaScript, similar to the style guide we used for Ruby in the previous unit.  If you follow the instructions on that website to add functionality to your IDE then it will automatically lint your JS files and help you fix any errors you may have.
+- Set your editor to use 2 spaces for `.js` files.  How to do this will depend on the IDE that you use.
 
 ## Content and Activities
 - [Unit 2](https://github.com/affinity-digital-ltd/unit2/wiki)

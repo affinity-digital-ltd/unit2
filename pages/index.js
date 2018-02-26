@@ -1,11 +1,16 @@
 import { Component } from 'react'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
 import Layout from '../components/Layout'
 import SubscriptionForm from '../components/SubscriptionForm'
 import PostCard from '../components/PostCard'
+import withData from '../lib/withData'
 
 class Index extends Component {
   render () {
+    let { data: { posts } } = this.props
+
     return <Layout {...this.props}>
       <div className='row' style={{marginBottom: '2rem'}}>
         <div className='col-12'>
@@ -20,12 +25,25 @@ class Index extends Component {
         </div>
       </div>
       <div className='row'>
-        {/* <% @posts.each do |post| %>
-          <PostCard />
-        <% end %> */}
+        {posts.map((post, index) => {
+          return <PostCard key={index} post={post} />
+        })}
       </div>
     </Layout>
   }
 }
 
-export default Index
+let postsQuery = gql`
+  query posts {
+    posts {
+      id
+      title
+      intro
+      created_at
+    }
+  }
+`
+
+const PostsData = graphql(postsQuery)(Index)
+
+export default withData(PostsData)

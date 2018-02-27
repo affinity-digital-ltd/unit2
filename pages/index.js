@@ -9,31 +9,37 @@ import withData from '../lib/withData'
 
 class Index extends Component {
   render () {
-    let { data: { posts } } = this.props
+    const { data: { posts, loading } } = this.props
 
-    return <Layout {...this.props}>
-      <div className='row' style={{marginBottom: '2rem'}}>
-        <div className='col-12'>
-          <div className='card'>
-            <div className='card-header'>
-              If you would like to receive notifications about new posts, then please consider signing up.
-            </div>
-            <div className='card-body'>
-              <SubscriptionForm />
+    if (loading) {
+      return <Layout {...this.props}>
+        <p>Loading...</p>
+      </Layout>
+    } else {
+      return <Layout {...this.props}>
+        <div className='row' style={{marginBottom: '2rem'}}>
+          <div className='col-12'>
+            <div className='card'>
+              <div className='card-header'>
+                If you would like to receive notifications about new posts, then please consider signing up.
+              </div>
+              <div className='card-body'>
+                <SubscriptionForm />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className='row'>
-        {posts.map((post, index) => {
-          return <PostCard key={index} post={post} />
-        })}
-      </div>
-    </Layout>
+        <div className='row'>
+          {posts.map((post, index) => {
+            return <PostCard key={index} post={post} />
+          })}
+        </div>
+      </Layout>
+    }
   }
 }
 
-let postsQuery = gql`
+const postsQuery = gql`
   query posts {
     posts {
       id

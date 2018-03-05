@@ -9,6 +9,7 @@ import withData from '../lib/withData'
 
 class Index extends Component {
   render () {
+    console.log(localStorage.getItem('token_id'))
     const { data: { posts, loading } } = this.props
 
     if (loading) {

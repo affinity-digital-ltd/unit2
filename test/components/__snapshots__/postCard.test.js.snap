@@ -20,6 +20,7 @@ exports[`<PostCard /> it renders correctly 1`] = `
         className="card-title"
       >
         <Link
+          as="/posts/1"
           href="/post?id=1"
         >
           <a>

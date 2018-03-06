@@ -1,7 +1,8 @@
 import Article from '../../components/Article'
+jest.mock('../../lib/Auth')
 
 describe('<Article />', () => {
-  test('it renders correctly', () => {
+  it('it renders correctly', () => {
     const post = {
       id: '1',
       title: 'This is my article',

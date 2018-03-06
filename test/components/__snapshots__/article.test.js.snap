@@ -53,6 +53,23 @@ exports[`<Article /> it renders correctly 1`] = `
         </div>
       </div>
     </div>
+    <div
+      className="card"
+    >
+      <div
+        className="card-body"
+      >
+        <p>
+          If you would like to leave a comment, then please login
+        </p>
+        <a
+          className="btn btn-success btn-lg"
+          onClick={[Function]}
+        >
+          Login
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 `;

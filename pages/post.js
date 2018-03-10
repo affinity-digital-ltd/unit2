@@ -18,10 +18,21 @@ class Post extends Component {
     const formData = new window.FormData(form)
 
     this.props.mutate({
-      variables: { 
+      variables: {
         postId: this.props.data.post.id,
         name: formData.get('name'),
         body: formData.get('body')
+      },
+      update: (proxy, { data: { addComment } }) => {
+        const data = proxy.readQuery({
+          query: postQuery,
+          variables: {
+            id: this.props.data.post.id
+          }
+        })
+        data.post.comments.push(addComment)
+
+        proxy.writeQuery({ query: postQuery, data })
       }
     })
 
@@ -80,16 +91,7 @@ const Data = compose(
       }
     })
   }),
-  graphql(addComment, {
-    update: (proxy, { data: { addComment } }) => {
-      const data = proxy.readQuery({ query: postQuery })
-      console.log(data)
-      data.post.comments.push(addComment)
-
-      proxy.writeQuery({ query: postQuery, data })
-    }
-  })
+  graphql(addComment)
 )(Post)
-
 
 export default withData(Data)

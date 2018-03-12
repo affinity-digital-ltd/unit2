@@ -36,7 +36,7 @@ exports[`<Article /> it renders correctly 1`] = `
           className="card-header"
         >
           <time
-            datetime={1997-02-02T03:04:05.000Z}
+            dateTime={1997-02-02T03:04:05.000Z}
           >
             February 2, 1997
           </time>

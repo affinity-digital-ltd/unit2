@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Header /> it renders correctly 1`] = `
+exports[`<Header />  it renders correctly 1`] = `
 <div
   className="row"
   style={
@@ -23,7 +23,96 @@ exports[`<Header /> it renders correctly 1`] = `
       <div
         className="card-body"
       >
-        <SubscriptionForm />
+        <SubscriptionForm
+          signupStatus={Object {}}
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Header /> with a failing signup it renders correctly 1`] = `
+<div
+  className="row"
+  style={
+    Object {
+      "marginBottom": "2rem",
+    }
+  }
+>
+  <div
+    className="col-12"
+  >
+    <div
+      className="alert alert-danger"
+      role="alert"
+    >
+      Email 
+      cant be blank
+    </div>
+    <div
+      className="card"
+    >
+      <div
+        className="card-header"
+      >
+        If you would like to receive notifications about new posts, then please consider signing up.
+      </div>
+      <div
+        className="card-body"
+      >
+        <SubscriptionForm
+          signupStatus={
+            Object {
+              "email": Array [
+                "cant be blank",
+              ],
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Header /> with a successful signup it renders correctly 1`] = `
+<div
+  className="row"
+  style={
+    Object {
+      "marginBottom": "2rem",
+    }
+  }
+>
+  <div
+    className="col-12"
+  >
+    <div
+      className="alert alert-success"
+      role="alert"
+    >
+      Thank you for signing up
+    </div>
+    <div
+      className="card"
+    >
+      <div
+        className="card-header"
+      >
+        If you would like to receive notifications about new posts, then please consider signing up.
+      </div>
+      <div
+        className="card-body"
+      >
+        <SubscriptionForm
+          signupStatus={
+            Object {
+              "id": 1,
+            }
+          }
+        />
       </div>
     </div>
   </div>

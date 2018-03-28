@@ -14,7 +14,7 @@ class Article extends Component {
 
   canComment () {
     if (this.auth.isAuthenticated()) {
-      return <CommentForm />
+      return <CommentForm postComment={this.props.postComment} />
     } else {
       return <div className='card'>
         <div className='card-body'>
@@ -43,7 +43,7 @@ class Article extends Component {
           {post.comments.map((comment, index) => {
             return <div className='card c-article__comment' key={index}>
               <div className='card-header'>
-                <time datetime={comment.created_at}>{moment(comment.created_at).format('LL')}</time>
+                <time dateTime={comment.created_at}>{moment(comment.created_at).format('LL')}</time>
               </div>
               <div className='card-body'>
                 <h6 className='card-subtitle mb-2 text-muted'>

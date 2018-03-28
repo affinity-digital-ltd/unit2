@@ -2,14 +2,14 @@ import { Component } from 'react'
 
 class CommentForm extends Component {
   render () {
-    return <form>
+    return <form onSubmit={this.props.postComment}>
       <div className='form-group'>
         <label>Name</label>
-        <input name='name' className='form-control' />
+        <input name='name' className='form-control' required />
       </div>
       <div className='form-group'>
         <label>Body</label>
-        <textarea name='body' className='form-control' />
+        <textarea name='body' className='form-control' required />
       </div>
       <div className='form-group'>
         <button type='submit' className='btn btn-primary'>Post Comment</button>

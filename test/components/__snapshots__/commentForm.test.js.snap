@@ -11,6 +11,7 @@ exports[`<CommentForm /> it renders correctly 1`] = `
     <input
       className="form-control"
       name="name"
+      required={true}
     />
   </div>
   <div
@@ -22,6 +23,7 @@ exports[`<CommentForm /> it renders correctly 1`] = `
     <textarea
       className="form-control"
       name="body"
+      required={true}
     />
   </div>
   <div

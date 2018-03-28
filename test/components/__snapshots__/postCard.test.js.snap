@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PostCard /> it renders correctly 1`] = `
+<div
+  className="col-xs-12 col-md-6 col-lg-3"
+  style={
+    Object {
+      "alignItems": "stretch",
+      "display": "flex",
+    }
+  }
+>
+  <div
+    className="card c-card"
+  >
+    <div
+      className="card-body"
+    >
+      <h5
+        className="card-title"
+      >
+        <Link
+          href="/post?id=1"
+        >
+          <a>
+            This is my article
+          </a>
+        </Link>
+      </h5>
+      <h6
+        className="card-subtitle mb-2 text-muted"
+      >
+        <time
+          dateTime={1996-02-02T03:04:05.000Z}
+        >
+          February 2, 1996
+        </time>
+      </h6>
+      <p
+        className="card-text"
+      >
+        This is the intro text to my article
+      </p>
+    </div>
+  </div>
+</div>
+`;

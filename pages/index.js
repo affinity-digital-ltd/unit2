@@ -1,31 +1,44 @@
 import { Component } from 'react'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
 import Layout from '../components/Layout'
-import SubscriptionForm from '../components/SubscriptionForm'
+import Header from '../components/Header'
 import PostCard from '../components/PostCard'
+import withData from '../lib/withData'
 
 class Index extends Component {
   render () {
-    return <Layout {...this.props}>
-      <div className='row' style={{marginBottom: '2rem'}}>
-        <div className='col-12'>
-          <div className='card'>
-            <div className='card-header'>
-              If you would like to receive notifications about new posts, then please consider signing up.
-            </div>
-            <div className='card-body'>
-              <SubscriptionForm />
-            </div>
-          </div>
+    const { data: { posts, loading } } = this.props
+
+    if (loading) {
+      return <Layout {...this.props}>
+        <p>Loading...</p>
+      </Layout>
+    } else {
+      return <Layout {...this.props}>
+        <Header />
+        <div className='row'>
+          {posts.map((post, index) => {
+            return <PostCard key={index} post={post} />
+          })}
         </div>
-      </div>
-      <div className='row'>
-        {/* <% @posts.each do |post| %>
-          <PostCard />
-        <% end %> */}
-      </div>
-    </Layout>
+      </Layout>
+    }
   }
 }
 
-export default Index
+const postsQuery = gql`
+  query posts {
+    posts {
+      id
+      title
+      intro
+      created_at
+    }
+  }
+`
+
+const PostsData = graphql(postsQuery)(Index)
+
+export default withData(PostsData)

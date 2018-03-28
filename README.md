@@ -10,3 +10,7 @@ Throughout this Unit there will be a great emphasis on JavaScript, where you wil
 
 ## Content and Activities
 - [Unit 2](https://github.com/affinity-digital-ltd/unit2/wiki)
+
+## SUPPLEMENTARY LEARNING
+- Higher Order Components
+- Separation of concerns between pages and components

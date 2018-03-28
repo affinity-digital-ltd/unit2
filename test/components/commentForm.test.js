@@ -1,9 +1,9 @@
-import Header from '../../components/Header'
+import CommentForm from '../../components/CommentForm'
 
-describe('<Header />', () => {
+describe('<CommentForm />', () => {
   it('it renders correctly', () => {
     const component = shallow(
-      <Header />
+      <CommentForm />
     )
 
     expect(component).toMatchSnapshot()

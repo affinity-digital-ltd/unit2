@@ -1,7 +1,34 @@
 import { Component } from 'react'
 import moment from 'moment'
 
+import CommentForm from '../components/CommentForm'
+
+import Auth from '../lib/Auth'
+
 class Article extends Component {
+  constructor (props) {
+    super(props)
+    this.login = this.login.bind(this)
+    this.auth = new Auth()
+  }
+
+  canComment () {
+    if (this.auth.isAuthenticated()) {
+      return <CommentForm />
+    } else {
+      return <div className='card'>
+        <div className='card-body'>
+          <p>If you would like to leave a comment, then please login</p>
+          <a className='btn btn-success btn-lg' onClick={this.login} >Login</a>
+        </div>
+      </div>
+    }
+  }
+
+  login () {
+    this.auth.login()
+  }
+
   render () {
     const { post } = this.props
 
@@ -27,11 +54,7 @@ class Article extends Component {
             </div>
           })}
         </div>
-        {/* <% unless session[:userinfo].present? %>
-          <p>If you would like to leave a comment, then please login</p>
-          <a className="btn btn-success btn-lg" href="/auth/auth0">Login</a>
-        <% end %>
-        <%= render 'comments/form' if session[:userinfo].present? %> */}
+        {this.canComment()}
       </div>
     </div>
   }

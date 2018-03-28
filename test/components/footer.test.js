@@ -1,7 +1,7 @@
 import Footer from '../../components/Footer'
 
 describe('<Footer />', () => {
-  test('it renders correctly', () => {
+  it('it renders correctly', () => {
     const component = shallow(
       <Footer />
     )

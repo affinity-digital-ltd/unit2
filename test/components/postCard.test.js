@@ -1,7 +1,7 @@
 import PostCard from '../../components/PostCard'
 
 describe('<PostCard />', () => {
-  test('it renders correctly', () => {
+  it('it renders correctly', () => {
     const post = {
       id: '1',
       title: 'This is my article',

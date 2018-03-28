@@ -1,10 +1,14 @@
 {
   "dependencies": {
+    "@zeit/next-css": "^0.1.2",
     "@zeit/next-sass": "^0.1.1",
+    "bootstrap": "4.0.0",
+    "moment": "^2.20.1",
     "next": "^5.0.0",
     "node-sass": "^4.7.2",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "reactstrap": "^5.0.0-beta"
   },
   "standard": {
     "globals": [

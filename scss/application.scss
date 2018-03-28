@@ -1,3 +1,6 @@
-.container {
-  background: pink;
-}
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+
+@import "components/c-article.scss";
+@import "components/c-card.scss";
+@import "components/c-nav.scss";
+

@@ -1,0 +1,13 @@
+.c-nav {
+  margin-bottom: 2rem;
+  height: 70vh;
+  background: url('/static/michal-kmet-257136.jpg') 50% 0%;
+  background-size: cover;
+  opacity: 0.8;
+
+  &__brand {
+    font-weight: 600;
+    position: absolute;
+    top: 1rem;
+  }
+}

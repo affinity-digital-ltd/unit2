@@ -45,4 +45,3 @@ describe('<Header /> with a failing signup', () => {
     expect(component).toMatchSnapshot()
   })
 })
-

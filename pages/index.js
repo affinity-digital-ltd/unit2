@@ -49,7 +49,7 @@ class Index extends Component {
 
   render () {
     const { data: { posts, loading } } = this.props
-    
+
     if (loading) {
       return <Layout {...this.props}>
         <p>Loading...</p>

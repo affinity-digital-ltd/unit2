@@ -88,7 +88,7 @@ class Post extends Component {
                       {post.comments.map((comment, index) => {
                         return <Comment comment={comment} key={index} />
                       })}
-                      <PostComment mutation={addComment} />
+                      <PostComment mutation={(event) => this.postComment(event, addComment)} />
                     </div>
                   }}
                 </Mutation>

@@ -18,7 +18,7 @@ class PostComment extends Component {
 
   render () {
     if (this.auth.isAuthenticated()) {
-      return <CommentForm postComment={(event) => this.postComment(event, this.props.mutation)} />
+      return <CommentForm postComment={this.props.mutation} />
     } else {
       return <div className='card'>
         <div className='card-body'>

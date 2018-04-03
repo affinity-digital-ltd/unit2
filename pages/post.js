@@ -1,38 +1,57 @@
 import { Component } from 'react'
-import { graphql, compose } from 'react-apollo'
+import { Query, Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import Layout from '../components/Layout'
 import Article from '../components/Article'
+import Comment from '../components/Comment'
+import PostComment from '../components/PostComment'
+
 import withData from '../lib/withData'
 
 class Post extends Component {
   constructor (props) {
     super(props)
+
     this.postComment = this.postComment.bind(this)
+    this.addComment = gql`
+      mutation addComment($postId: ID!, $name: String!, $body: String!) {
+        addComment(postId:$postId, name:$name, body:$body) {
+          id
+          name
+          body
+          created_at
+        }
+      }
+    `
+    this.postQuery = gql`
+      query post($id: ID!) {
+        post(id:$id) {
+          id
+          title
+          intro
+          body
+          created_at
+          comments {
+            id
+            name
+            body
+            created_at
+          }
+        }
+      }
+    `
   }
 
-  postComment (event) {
+  postComment (event, addComment) {
     event.preventDefault()
     const form = event.target
-    const formData = new window.FormData(form)
 
-    this.props.mutate({
+    addComment({
       variables: {
-        postId: this.props.data.post.id,
-        name: formData.get('name'),
-        body: formData.get('body')
-      },
-      update: (proxy, { data: { addComment } }) => {
-        const data = proxy.readQuery({
-          query: postQuery,
-          variables: {
-            id: this.props.data.post.id
-          }
-        })
-        data.post.comments.push(addComment)
-
-        proxy.writeQuery({ query: postQuery, data })
+        postId: this.props.url.query.id,
+        name: form.name.value,
+        body: form.body.value
       }
     })
 
@@ -40,58 +59,46 @@ class Post extends Component {
   }
 
   render () {
-    const { data: { post, loading } } = this.props
-
-    if (loading) {
-      return <Layout {...this.props}>
-        <p>Loading..</p>
-      </Layout>
-    } else {
-      return <Layout {...this.props}>
-        <Article post={post} postComment={this.postComment} />
-      </Layout>
-    }
+    return <Query query={this.postQuery} variables={{id: this.props.url.query.id}}>
+      {({ loading, error, data: { post } }) => {
+        if (loading) {
+          return <Layout {...this.props}>
+            <div className='row'>
+              <div className='col-lg-8 offset-lg-2'>
+                <p>Loading..</p>
+              </div>
+            </div>
+          </Layout>
+        } else {
+          return <Layout {...this.props}>
+            <div className='row'>
+              <div className='col-lg-8 offset-lg-2'>
+                <Article post={post} />
+                <Mutation mutation={this.addComment}
+                  update={(cache, { data: { addComment } }) => {
+                    const updatedPost = Object.assign({}, post, { comments: post.comments.concat([addComment]) })
+                    cache.writeQuery({
+                      query: this.postQuery,
+                      variables: {id: this.props.url.query.id},
+                      data: { post: updatedPost }
+                    })
+                  }}>
+                  {addComment => {
+                    return <div>
+                      {post.comments.map((comment, index) => {
+                        return <Comment comment={comment} key={index} />
+                      })}
+                      <PostComment mutation={addComment} />
+                    </div>
+                  }}
+                </Mutation>
+              </div>
+            </div>
+          </Layout>
+        }
+      }}
+    </Query>
   }
 }
 
-const addComment = gql`
-  mutation addComment($postId: ID!, $name: String!, $body: String!) {
-    addComment(postId:$postId, name:$name, body:$body) {
-      id
-      name
-      body
-      created_at
-    }
-  }
-`
-
-const postQuery = gql`
-  query post($id: ID!) {
-    post(id:$id) {
-      id
-      title
-      intro
-      body
-      created_at
-      comments {
-        id
-        name
-        body
-        created_at
-      }
-    }
-  }
-`
-
-const Data = compose(
-  graphql(postQuery, {
-    options: (props) => ({
-      variables: {
-        id: props.url.query.id
-      }
-    })
-  }),
-  graphql(addComment)
-)(Post)
-
-export default withData(Data)
+export default withData(Post)

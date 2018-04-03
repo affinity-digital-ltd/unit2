@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PostComment /> it renders correctly 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="card-body"
+  >
+    <p>
+      If you would like to leave a comment, then please login
+    </p>
+    <a
+      className="btn btn-success btn-lg"
+      onClick={[Function]}
+    >
+      Login
+    </a>
+  </div>
+</div>
+`;

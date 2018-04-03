@@ -1,75 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Article /> it renders correctly 1`] = `
-<div
-  className="row"
->
-  <div
-    className="col-lg-8 offset-lg-2"
+<div>
+  <h1
+    className="c-article__header"
   >
-    <h1
-      className="c-article__header"
-    >
-      This is my article
-    </h1>
-    <hr
-      className="c-article__rule"
-    />
-    <p
-      className="c-article__intro"
-    >
-      This is the intro text to my article
-    </p>
-    <p
-      className="c-article__body"
-    >
-      This is the **body** of my article, which includes markdown
-    </p>
-    <div
-      className="c-article__comments"
-    >
-      <div
-        className="card c-article__comment"
-        key="0"
-      >
-        <div
-          className="card-header"
-        >
-          <time
-            dateTime={1997-02-02T03:04:05.000Z}
-          >
-            February 2, 1997
-          </time>
-        </div>
-        <div
-          className="card-body"
-        >
-          <h6
-            className="card-subtitle mb-2 text-muted"
-          >
-            Dave Smith
-          </h6>
-          This is the **body** of my comment, which includes markdown
-        </div>
-      </div>
-    </div>
-    <div
-      className="card"
-    >
-      <div
-        className="card-body"
-      >
-        <p>
-          If you would like to leave a comment, then please login
-        </p>
-        <a
-          className="btn btn-success btn-lg"
-          onClick={[Function]}
-        >
-          Login
-        </a>
-      </div>
-    </div>
-  </div>
+    This is my article
+  </h1>
+  <hr
+    className="c-article__rule"
+  />
+  <p
+    className="c-article__intro"
+  >
+    This is the intro text to my article
+  </p>
+  <p
+    className="c-article__body"
+  >
+    This is the **body** of my article, which includes markdown
+  </p>
 </div>
 `;

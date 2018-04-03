@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Comment /> it renders correctly 1`] = `
+<div
+  className="c-article__comments"
+>
+  <div
+    className="card c-article__comment"
+  >
+    <div
+      className="card-header"
+    >
+      <time
+        dateTime={1997-02-02T03:04:05.000Z}
+      >
+        February 2, 1997
+      </time>
+    </div>
+    <div
+      className="card-body"
+    >
+      <h6
+        className="card-subtitle mb-2 text-muted"
+      >
+        Dave Smith
+      </h6>
+      This is the **body** of my comment, which includes markdown
+    </div>
+  </div>
+</div>
+`;

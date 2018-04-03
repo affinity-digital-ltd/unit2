@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Layout /> it renders correctly 1`] = `
+<div>
+  <nav
+    className="navbar navbar-expand-lg navbar-light bg-light c-nav"
+  >
+    <Link
+      href="/"
+    >
+      <a
+        className="navbar-brand c-nav__brand"
+      >
+        Unit 1
+      </a>
+    </Link>
+  </nav>
+  <div
+    className="container"
+  />
+</div>
+`;

@@ -1,5 +1,4 @@
 import Article from '../../components/Article'
-jest.mock('../../lib/Auth')
 
 describe('<Article />', () => {
   it('it renders correctly', () => {

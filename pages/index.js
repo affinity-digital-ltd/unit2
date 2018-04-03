@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { graphql } from 'react-apollo'
+import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import fetch from 'isomorphic-unfetch'
 
@@ -16,6 +16,16 @@ class Index extends Component {
     this.state = {
       signupStatus: {}
     }
+    this.postsQuery = gql`
+      query posts {
+        posts {
+          id
+          title
+          intro
+          created_at
+        }
+      }
+    `
   }
 
   emailSubscription (event) {
@@ -31,7 +41,7 @@ class Index extends Component {
         'Content-Type': 'application/json',
         'Origin': 'http://localhost:3000'
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         subscriber: {
           email: email
         }
@@ -43,41 +53,31 @@ class Index extends Component {
         signupStatus: data
       })
     })
-      
+
     form.reset()
   }
 
   render () {
-    const { data: { posts, loading } } = this.props
-
-    if (loading) {
-      return <Layout {...this.props}>
-        <p>Loading...</p>
-      </Layout>
-    } else {
-      return <Layout {...this.props}>
-        <Header emailSubscription={this.emailSubscription} signupStatus={this.state.signupStatus} />
-        <div className='row'>
-          {posts.map((post, index) => {
-            return <PostCard key={index} post={post} />
-          })}
-        </div>
-      </Layout>
+    return <Query query={this.postsQuery}>
+      {({ loading, data: { posts } }) => {
+        if (loading) {
+          return <Layout {...this.props}>
+            <p>Loading...</p>
+          </Layout>
+        } else {
+          return <Layout {...this.props}>
+            <Header emailSubscription={this.emailSubscription} signupStatus={this.state.signupStatus} />
+            <div className='row'>
+              {posts.map((post, index) => {
+                return <PostCard key={index} post={post} />
+              })}
+            </div>
+          </Layout>
+        }
+      }
     }
+    </Query>
   }
 }
 
-const postsQuery = gql`
-  query posts {
-    posts {
-      id
-      title
-      intro
-      created_at
-    }
-  }
-`
-
-const PostsData = graphql(postsQuery)(Index)
-
-export default withData(PostsData)
+export default withData(Index)
